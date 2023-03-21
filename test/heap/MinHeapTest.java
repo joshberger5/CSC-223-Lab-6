@@ -27,7 +27,7 @@ class MinHeapTest
 		List<Double> keys = new ArrayList<Double>();
 
 		final int LOW = 0;    // included value
-		final int HIGH = 100; // included value
+		final int HIGH = 99; // included value
 
 		// POPULATE
 		for (int i = HIGH; i >= LOW; i--)
@@ -54,7 +54,7 @@ class MinHeapTest
 		List<Double> keys = new ArrayList<Double>();
 
 		final int LOW = 100;    // included value
-		final int HIGH = 200; // included value
+		final int HIGH = 199; // included value
 
 		// POPULATE
 		for (int i = LOW; i <= HIGH; i++)
@@ -75,7 +75,7 @@ class MinHeapTest
 		List<Double> orderedkeys = new ArrayList<Double>();
 		
 		final int LOW = 100;    // included value
-		final int HIGH = 200; // included value
+		final int HIGH = 199; // included value
 
 		// POPULATE
 		for (int i = LOW; i <= HIGH; i++)

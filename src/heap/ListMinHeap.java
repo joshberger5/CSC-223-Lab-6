@@ -39,9 +39,8 @@ public class ListMinHeap<T> implements MinHeap<T>
 
 	@Override
 	public void build(List<Double> keys, List<T> values) {
-		for (int i = 0; i < keys.size(); i ++) {
-			HeapNode<T> node = new HeapNode(keys.get(i), values.get(i));
-			_heap[_size++] = node;
+		for (int i = 0; i < keys.size(); i++) {
+			insert(keys.get(i), values.get(i));
 		}
 	}
 
@@ -64,7 +63,7 @@ public class ListMinHeap<T> implements MinHeap<T>
 			}
 		}
 		// shifts every HeapNode after the minimum's index down one
-		for (int i = minIndex; i < _size-1; minIndex++) {
+		for (int i = minIndex; i < _size-1; i++) {
 			_heap[i] = _heap[i+1];
 		}
 		_heap[_size-1] = null;
