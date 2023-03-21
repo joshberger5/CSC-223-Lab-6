@@ -41,8 +41,9 @@ public class ListMinHeap<T> implements MinHeap<T>
 	public void build(List<Double> keys, List<T> values) {
 		for (int i = 0; i < keys.size(); i ++) {
 			HeapNode<T> node = new HeapNode(keys.get(i), values.get(i));
-			_heap[_size++] = node;
+			_heap[_size+i] = node;
 		}
+		_size = _size + keys.size();
 	}
 
 	@Override
