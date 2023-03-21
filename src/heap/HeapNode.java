@@ -23,10 +23,12 @@ public class HeapNode<T> implements Comparable<T>
 	@Override
 	public int compareTo(Object o)
 	{
+		if(o == null) throw new IllegalArgumentException();
+		if(!(o instanceof HeapNode)) throw new IllegalArgumentException();
+		@SuppressWarnings("unchecked")
+		HeapNode<T> other = (HeapNode<T>) o;
+		if(_key > other._key) return 1;
+		if(_key < other._key) return -1;
 		return 0;
-		
-		//
-        // TODO
-		//
 	}
 }
