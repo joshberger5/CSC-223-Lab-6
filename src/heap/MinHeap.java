@@ -27,5 +27,5 @@ public interface MinHeap<T>
 	public int size();
 	public void clear();
 	
-	public static final int DEFAULT_SIZE = 100;
+	public static final int DEFAULT_SIZE = 101;
 }

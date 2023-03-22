@@ -46,7 +46,7 @@ public class ListMinHeap<T> implements MinHeap<T>
 
 	@Override
 	public void insert(double key, T value) {
-		HeapNode<T> node = new HeapNode(key, value);
+		HeapNode<T> node = new HeapNode<T>(key, value);
 		_heap[_size++] = node;
 	}
 

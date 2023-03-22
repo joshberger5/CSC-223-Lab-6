@@ -11,13 +11,28 @@
 
 package heap;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ClassicMinHeap<T> implements MinHeap<T>
 {
 	protected HeapNode<T>[] _heap;
 	protected int           _size;
-	
+
+	public ClassicMinHeap(int size) {
+		init(size);
+	}
+
+	public ClassicMinHeap() {
+		this(DEFAULT_SIZE);
+	}
+
+	@SuppressWarnings("unchecked")
+	protected void init(int sz) {
+		_heap = (HeapNode<T>[]) new HeapNode[sz];
+		_size = 0;
+	}
+
 	@Override
 	public void build(List<Double> keys, List<T> values) {
 		for (int i = 0; i < keys.size(); i ++) {
@@ -28,14 +43,14 @@ public class ClassicMinHeap<T> implements MinHeap<T>
 			sink(i);
 		}
 	}
-	
+
 	@Override
 	public void insert(double key, T value) {
 		_heap[_size++] = new HeapNode<T>(key, value);
 		swim(_size-1);
-		
+
 	}
-	
+
 	@Override
 	public HeapNode<T> extractMin() {
 		swap(0, --_size);
@@ -44,44 +59,46 @@ public class ClassicMinHeap<T> implements MinHeap<T>
 		sink(0);
 		return min;
 	}
-	
+
 	@Override
 	public HeapNode<T> peekMin() {
 		return _heap[0];
 	}
-	
+
 	@Override
 	public boolean isEmpty() {
 		return _size == 0;
 	}
-	
+
 	@Override
 	public int size() {
 		return _size;
 	}
-	
+
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		Arrays.fill(_heap, null);
+		_size = 0;
+
 	}
-	
+
 	private void swap(int p1, int p2) {
 		HeapNode<T> hold = _heap[p1];
 		_heap[p1] = _heap[p2];
 		_heap[p2] = hold;
 	}
-	
+
 	private void sink(int place) {
-		if(place >= _size) return;
-		int smallerChild = _heap[leftChild(place)].compareTo(_heap[rightChild(place)]) < 0
-						   ? leftChild(place) : rightChild(place);
+		if(leftChild(place) >= _size) return;
+		int smallerChild;
+		if(rightChild(place) >= _size) smallerChild = leftChild(place);
+		else smallerChild = smallerChild(place);
 		if(_heap[place].compareTo(_heap[smallerChild]) > 0) {
-				swap(place, smallerChild);
-				sink(smallerChild);
+			swap(place, smallerChild);
+			sink(smallerChild);
 		}
 	}
-	
+
 	private void swim(int place) {
 		int parent = parent(place);
 		if(parent == place) return;
@@ -90,16 +107,21 @@ public class ClassicMinHeap<T> implements MinHeap<T>
 			swim(parent);
 		}
 	}
-	
+
 	private int parent(int place) {
 		return place/2;
 	}
-	
+
 	private int leftChild(int place) {
 		return 2*place+1;
 	}
-	
+
 	private int rightChild(int place) {
 		return 2*place+2;
+	}
+	
+	private int smallerChild(int place) {
+		return _heap[leftChild(place)].compareTo(_heap[rightChild(place)]) < 0
+							? leftChild(place) : rightChild(place);
 	}
 }
