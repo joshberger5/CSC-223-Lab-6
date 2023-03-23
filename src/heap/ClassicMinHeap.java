@@ -36,7 +36,7 @@ public class ClassicMinHeap<T> implements MinHeap<T>
 
 	/**
 	 * Initializes a blank heap with a given size
-	 * @param sz
+	 * @param size
 	 */
 	@SuppressWarnings("unchecked")
 	protected void init(int size) {
