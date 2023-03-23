@@ -19,17 +19,28 @@ public class ClassicMinHeap<T> implements MinHeap<T>
 	protected HeapNode<T>[] _heap;
 	protected int           _size;
 
+	/**
+	 * Construct an empty heap of a given size 
+	 * @param size
+	 */
 	public ClassicMinHeap(int size) {
 		init(size);
 	}
 
+	/**
+	 * Construct an empty heap of size 101
+	 */
 	public ClassicMinHeap() {
 		this(DEFAULT_SIZE);
 	}
 
+	/**
+	 * Initializes a blank heap with a given size
+	 * @param sz
+	 */
 	@SuppressWarnings("unchecked")
-	protected void init(int sz) {
-		_heap = (HeapNode<T>[]) new HeapNode[sz];
+	protected void init(int size) {
+		_heap = (HeapNode<T>[]) new HeapNode[size];
 		_size = 0;
 	}
 
@@ -82,46 +93,82 @@ public class ClassicMinHeap<T> implements MinHeap<T>
 
 	}
 
-	private void swap(int p1, int p2) {
-		HeapNode<T> hold = _heap[p1];
-		_heap[p1] = _heap[p2];
-		_heap[p2] = hold;
+	/**
+	 * swaps the nodes at two positions
+	 * @param position1
+	 * @param position2
+	 */
+	private void swap(int position1, int position2) {
+		HeapNode<T> hold = _heap[position1];
+		_heap[position1] = _heap[position2];
+		_heap[position2] = hold;
 	}
 
-	private void sink(int place) {
-		if(leftChild(place) >= _size) return;
+	/**
+	 * swaps node and its smallest child until the node's smallest child is
+	 * not smaller than the node
+	 * @param index
+	 */
+	private void sink(int index) {
+		if(leftChild(index) >= _size) return;
 		int smallerChild;
-		if(rightChild(place) >= _size) smallerChild = leftChild(place);
-		else smallerChild = smallerChild(place);
-		if(_heap[place].compareTo(_heap[smallerChild]) > 0) {
-			swap(place, smallerChild);
+		if(rightChild(index) >= _size) smallerChild = leftChild(index);
+		else smallerChild = smallerChild(index);
+		if(_heap[index].compareTo(_heap[smallerChild]) > 0) {
+			swap(index, smallerChild);
 			sink(smallerChild);
 		}
 	}
 
-	private void swim(int place) {
-		int parent = parent(place);
-		if(parent == place) return;
-		if(_heap[place].compareTo(_heap[parent]) < 0) {
-			swap(place, parent);
+	/**
+	 * swaps node and its parent until the node's parent is not larger
+	 * than the node
+	 * @param index
+	 */
+	private void swim(int index) {
+		int parent = parent(index);
+		if(parent == index) return;
+		if(_heap[index].compareTo(_heap[parent]) < 0) {
+			swap(index, parent);
 			swim(parent);
 		}
 	}
 
-	private int parent(int place) {
-		return place/2;
+	/**
+	 * returns the index of the parent of the node at the given location
+	 * @param index
+	 * @return the parent' index
+	 */
+	private int parent(int index) {
+		return index/2;
 	}
 
-	private int leftChild(int place) {
-		return 2*place+1;
+	/**
+	 * returns the index of the left child of the node at the given location
+	 * @param index
+	 * @return the left child's index
+	 */
+	private int leftChild(int index) {
+		return 2*index+1;
 	}
 
-	private int rightChild(int place) {
-		return 2*place+2;
+	/**
+	 * returns the index of the right child of the node at the given location
+	 * @param index
+	 * @return the right child's index
+	 */
+	private int rightChild(int index) {
+		return 2*index+2;
 	}
 	
-	private int smallerChild(int place) {
-		return _heap[leftChild(place)].compareTo(_heap[rightChild(place)]) < 0
-							? leftChild(place) : rightChild(place);
+	/**
+	 * returns the index of the child with the lowest value of the nodes at
+	 * the given location
+	 * @param index
+	 * @return the smaller child's index
+	 */
+	private int smallerChild(int index) {
+		return _heap[leftChild(index)].compareTo(_heap[rightChild(index)]) < 0
+							? leftChild(index) : rightChild(index);
 	}
 }
