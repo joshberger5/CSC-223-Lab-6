@@ -1,5 +1,6 @@
 package main;
 
+import java.lang.reflect.Constructor;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,40 +18,37 @@ public class Main
 	{
 		final int[] ELEMENT_COUNT = new int[] {10000, 20000, 40000, 80000, 160000, 320000, 640000, 1280000, 2560000, 5120000 };
 
-		//
 		// All heaps we are testing
 		List<MinHeap<Integer>> heaps = new ArrayList<MinHeap<Integer>>();
-		heaps.add(new ListMinHeap<Integer>());
-		heaps.add(new SortedListMinHeap<Integer>());
-		heaps.add(new ClassicMinHeap<Integer>());
+		heaps.add(new ListMinHeap<Integer>(5120000));
+		heaps.add(new SortedListMinHeap<Integer>(5120000));
+		heaps.add(new ClassicMinHeap<Integer>(5120000));
 
-		//
 		// Execute the build process over all the heaps
 		for (MinHeap<Integer> heap : heaps)
 		{
 			System.out.println(heap.getClass() + " Build Heap");
+			System.out.println("Element Count, Build Time, ExtractMin Time");
 
-            //
-            // TODO: timing code
-			// 
-			// You are strongly advised to create support methods for building a shuffled list, etc.
-			//
-			
 			for (int count : ELEMENT_COUNT) {
-				
+				AbstractMap.SimpleEntry<List<Double>, List<Integer>> a = buildShuffledLists(count);
+				Timer t = new Timer();
+				t.start();
+				heap.build(a.getKey(), a.getValue());
+				long buildTime = t.stop();
+				t.start();
+				long extractMinTime = t.stop();
+				System.out.println(count + ", " + buildTime + ", " + extractMinTime);
+				heap.clear();
 			}
-
-			System.out.println();
-
-			heap.clear();
 		}
 	}
 	
-	private AbstractMap.SimpleEntry<List<Double>, List<Integer>> buildShuffledLists(int count) {
+	private static AbstractMap.SimpleEntry<List<Double>, List<Integer>> buildShuffledLists(int count) {
 		List<Double> keys = new ArrayList<Double>();
 		List<Integer> values = new ArrayList<Integer>();
 		
-		for (int i = 0; i < count; i++) {
+		for (int i = 1; i < count; i++) {
 			values.add(i);
 		}
 		

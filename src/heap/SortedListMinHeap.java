@@ -14,6 +14,14 @@ import java.util.List;
  */
 public class SortedListMinHeap<T> extends ListMinHeap<T> {
 	
+	public SortedListMinHeap() {
+		super();
+	}
+	
+	public SortedListMinHeap(int sz) {
+		super(sz);
+	}
+	
 	@Override
 	public void build(List<Double> keys, List<T> values) {
 		super.build(keys, values);
