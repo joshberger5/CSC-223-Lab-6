@@ -103,15 +103,45 @@ public class ClassicMinHeap<T> implements MinHeap<T>
 	}
 
 	/**
+	 * determines whether the node at the given index
+	 * has its right child
+	 * @param index
+	 * @return whether the right child is present
+	 */
+	private boolean hasRightChild(int index) {
+		return rightChild(index) < _size;
+	}
+
+	/**
+	 * determines whether the node at the given index
+	 * has its left child
+	 * @param index
+	 * @return whether the left child is present
+	 */
+	private boolean hasLeftChild(int index) {
+		return leftChild(index) < _size;
+	}
+
+	/**
+	 * returns the index of the child with the lowest value of the nodes at
+	 * the given location
+	 * <P> only works if the node has both children
+	 * @param index
+	 * @return the smaller child's index
+	 */
+	private int smallerChild(int index) {
+		return _heap[leftChild(index)].compareTo(_heap[rightChild(index)]) < 0
+				? leftChild(index) : rightChild(index);
+	}
+	
+	/**
 	 * swaps node and its smallest child until the node's smallest child is
 	 * not smaller than the node
 	 * @param index
 	 */
 	private void sink(int index) {
-		if(leftChild(index) >= _size) return;
-		int smallerChild;
-		if(rightChild(index) >= _size) smallerChild = leftChild(index);
-		else smallerChild = smallerChild(index);
+		if(!hasLeftChild(index)) return;
+		int smallerChild = !hasRightChild(index) ? leftChild(index) : smallerChild(index);
 		if(_heap[index].compareTo(_heap[smallerChild]) > 0) {
 			swap(index, smallerChild);
 			sink(smallerChild);
@@ -124,8 +154,8 @@ public class ClassicMinHeap<T> implements MinHeap<T>
 	 * @param index
 	 */
 	private void swim(int index) {
+		if(index == 0) return;
 		int parent = parent(index);
-		if(parent == index) return;
 		if(_heap[index].compareTo(_heap[parent]) < 0) {
 			swap(index, parent);
 			swim(parent);
@@ -157,16 +187,5 @@ public class ClassicMinHeap<T> implements MinHeap<T>
 	 */
 	private int rightChild(int index) {
 		return 2*index+2;
-	}
-	
-	/**
-	 * returns the index of the child with the lowest value of the nodes at
-	 * the given location
-	 * @param index
-	 * @return the smaller child's index
-	 */
-	private int smallerChild(int index) {
-		return _heap[leftChild(index)].compareTo(_heap[rightChild(index)]) < 0
-							? leftChild(index) : rightChild(index);
 	}
 }
