@@ -1,19 +1,17 @@
-/**
- * Write a succinct, meaningful description of the class here. You should avoid wordiness    
- * and redundancy. If necessary, additional paragraphs should be preceded by <p>,
- * the html tag for a new paragraph.
- *
- * <p>Bugs: (a list of bugs and / or other problems)
- *
- * @author <your name>
- * @date   <date of completion>
- */
-
 package heap;
 
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Array representation of a heap where the key of each child is
+ * less then the key of its parent. 
+ *
+ * <p>Bugs: none known
+ *
+ * @author Jake Shore, Josh Berger
+ * @date   3/24/2023
+ */
 public class ClassicMinHeap<T> implements MinHeap<T>
 {
 	protected HeapNode<T>[] _heap;

@@ -3,6 +3,15 @@ package heap;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Array representation of a heap where the key of each node is
+ * greater than that of its predecessor. 
+ *
+ * <p>Bugs: none known
+ *
+ * @author Jake Shore, Josh Berger
+ * @date   3/24/2023
+ */
 public class SortedListMinHeap<T> extends ListMinHeap<T> {
 	
 	@Override
