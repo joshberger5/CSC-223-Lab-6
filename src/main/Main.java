@@ -1,5 +1,6 @@
 package main;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,10 +35,29 @@ public class Main
 			// 
 			// You are strongly advised to create support methods for building a shuffled list, etc.
 			//
+			
+			for (int count : ELEMENT_COUNT) {
+				
+			}
 
 			System.out.println();
 
 			heap.clear();
 		}
+	}
+	
+	private AbstractMap.SimpleEntry<List<Double>, List<Integer>> buildShuffledLists(int count) {
+		List<Double> keys = new ArrayList<Double>();
+		List<Integer> values = new ArrayList<Integer>();
+		
+		for (int i = 0; i < count; i++) {
+			values.add(i);
+		}
+		
+		Collections.shuffle(values);
+		
+		values.forEach(v -> keys.add((double)v));
+		
+		return new AbstractMap.SimpleEntry<>(keys, values);
 	}
 }

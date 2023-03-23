@@ -5,8 +5,8 @@
  *
  * <p>Bugs: (a list of bugs and / or other problems)
  *
- * @author <your name>
- * @date   <date of completion>
+ * @author Josh Berger, Jake Shore
+ * @date   3/24/2023
  */
 
 package heap;
@@ -71,10 +71,11 @@ public class ListMinHeap<T> implements MinHeap<T>
 	private int getMinIndex() {
 		HeapNode<T> min = _heap[0];
 		int minIndex = 0;
-		// finds the HeapNode with the smallest key and saves its index
+		// if a HeapNode's key is smaller than the current min
+		// change min to that HeapNode
+		// save its index
 		for (int i = 1; i < _size; i++) {
-			int cmp = min.compareTo(_heap[i]);
-			if (cmp > 0) {
+			if (min.compareTo(_heap[i]) > 0) {
 				min = _heap[i];
 				minIndex = i;
 			}
