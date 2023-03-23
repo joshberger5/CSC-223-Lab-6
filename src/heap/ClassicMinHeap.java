@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Array representation of a heap where the key of each child is
- * less then the key of its parent. 
+ * greater then the key of its parent. 
  *
  * <p>Bugs: none known
  *
