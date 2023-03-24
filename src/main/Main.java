@@ -49,6 +49,8 @@ public class Main
 				heap.clear();
 			}
 		}
+		
+		System.out.println();
 	}
 	
 	/**

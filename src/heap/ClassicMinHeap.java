@@ -11,6 +11,19 @@ import java.util.List;
  *
  * @author Jake Shore, Josh Berger
  * @date   3/24/2023
+ * 
+ *                       Build       ExtractMin
+ *         10000        299500             1400
+ *         20000        586700             1100
+ *         40000       1255000             1600
+ *         80000       2710800             2200
+ *        160000       4343400             2800
+ *        320000      12894700             6900
+ *        640000      22041000             2700
+ *       1280000      45314900             2700
+ *       2560000      95171700             3500
+ *       5120000     281618700             3300
+ * 
  */
 public class ClassicMinHeap<T> implements MinHeap<T>
 {
