@@ -20,8 +20,8 @@ public class ListMinHeap<T> implements MinHeap<T>
 	 * Construct an empty heap of a given size 
 	 * @param size
 	 */
-	public ListMinHeap(int sz) {
-		init(sz);
+	public ListMinHeap(int size) {
+		init(size);
 	}
 	
 	/**
@@ -32,9 +32,9 @@ public class ListMinHeap<T> implements MinHeap<T>
 	}
 
 	@SuppressWarnings("unchecked")
-	protected void init(int sz)
+	protected void init(int size)
 	{
-		_heap = (HeapNode<T>[]) new HeapNode[sz];
+		_heap = (HeapNode<T>[]) new HeapNode[size];
 		_size = 0;
 	}
 

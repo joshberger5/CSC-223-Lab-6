@@ -25,8 +25,8 @@ public class SortedListMinHeap<T> extends ListMinHeap<T> {
 	 * Construct an empty heap of a given size 
 	 * @param size
 	 */
-	public SortedListMinHeap(int sz) {
-		super(sz);
+	public SortedListMinHeap(int size) {
+		super(size);
 	}
 	
 	@Override

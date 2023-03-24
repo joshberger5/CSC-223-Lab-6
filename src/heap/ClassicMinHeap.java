@@ -88,7 +88,6 @@ public class ClassicMinHeap<T> implements MinHeap<T>
 	public void clear() {
 		Arrays.fill(_heap, null);
 		_size = 0;
-
 	}
 
 	/**
