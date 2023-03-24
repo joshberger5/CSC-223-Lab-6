@@ -27,7 +27,7 @@ public class Main
 		for (MinHeap<Integer> heap : heaps)
 		{
 			System.out.println(heap.getClass() + " Build Heap");
-			System.out.println("Element Count, Build Time, ExtractMin Time");
+			System.out.println("Element Count\tBuild Time\tExtractMin Time");
 
 			for (int count : ELEMENT_COUNT) {
 				AbstractMap.SimpleEntry<List<Double>, List<Integer>> a = buildShuffledLists(count);
@@ -38,7 +38,7 @@ public class Main
 				t.start();
 				heap.extractMin();
 				long extractMinTime = t.stop();
-				System.out.println(count + ", " + buildTime + ", " + extractMinTime);
+				System.out.println(count + "\t\t" + buildTime + "\t\t" + extractMinTime);
 				heap.clear();
 			}
 		}
