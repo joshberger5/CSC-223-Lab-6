@@ -1,6 +1,5 @@
 package main;
 
-import java.lang.reflect.Constructor;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,6 +36,7 @@ public class Main
 				heap.build(a.getKey(), a.getValue());
 				long buildTime = t.stop();
 				t.start();
+				heap.extractMin();
 				long extractMinTime = t.stop();
 				System.out.println(count + ", " + buildTime + ", " + extractMinTime);
 				heap.clear();

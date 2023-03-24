@@ -31,10 +31,20 @@ public class SortedListMinHeap<T> extends ListMinHeap<T> {
 	
 	@Override
 	public void build(List<Double> keys, List<T> values) {
-		super.build(keys, values);
-		Arrays.sort(_heap, 0, keys.size());
+		//super.build(keys, values);
+		//Arrays.sort(_heap, 0, keys.size());
+		builder(keys, values);
 	}
 
+	private void builder(List<Double> keys, List<T> values) {
+		ClassicMinHeap<T> heap = new ClassicMinHeap<T>(keys.size());
+		heap.build(keys, values);
+		while(!heap.isEmpty()) {
+			HeapNode<T> min = heap.extractMin();
+			super.insert(min._key, min._value);
+		}
+	}
+	
 	/**
 	 * finds the index in the heap where a given HeapNode should be inserted
 	 * @param node
