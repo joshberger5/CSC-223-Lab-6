@@ -1,19 +1,16 @@
-/**
- * Write a succinct, meaningful description of the class here. You should avoid wordiness    
- * and redundancy. If necessary, additional paragraphs should be preceded by <p>,
- * the html tag for a new paragraph.
- *
- * <p>Bugs: (a list of bugs and / or other problems)
- *
- * @author Josh Berger, Jake Shore
- * @date   3/24/2023
- */
-
 package heap;
 
 import java.util.List;
 
-
+/**
+ * Array representation of a heap where the location of each node
+ * corresponds with when it was inserted into the heap. 
+ *
+ * <p>Bugs: none known
+ *
+ * @author Josh Berger, Jake Shore
+ * @date   3/24/2023
+ */
 public class ListMinHeap<T> implements MinHeap<T>
 {
 	protected HeapNode<T>[] _heap;
