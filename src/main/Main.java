@@ -30,20 +30,32 @@ public class Main
 			System.out.println("Element Count\tBuild Time\tExtractMin Time");
 
 			for (int count : ELEMENT_COUNT) {
+				// get the Lists of Keys and Values
 				AbstractMap.SimpleEntry<List<Double>, List<Integer>> a = buildShuffledLists(count);
+				
+				// time building the heap
 				Timer t = new Timer();
 				t.start();
 				heap.build(a.getKey(), a.getValue());
 				long buildTime = t.stop();
+				
+				// time extracting the min from the heap
 				t.start();
 				heap.extractMin();
 				long extractMinTime = t.stop();
+				
+				// print out the count and timings
 				System.out.println(count + "\t\t" + buildTime + "\t\t" + extractMinTime);
 				heap.clear();
 			}
 		}
 	}
 	
+	/**
+	 * Randomly populates the List of Keys and List of Values with a specified count
+	 * @param count
+	 * @return the List of Keys and List of Values
+	 */
 	private static AbstractMap.SimpleEntry<List<Double>, List<Integer>> buildShuffledLists(int count) {
 		List<Double> keys = new ArrayList<Double>();
 		List<Integer> values = new ArrayList<Integer>();

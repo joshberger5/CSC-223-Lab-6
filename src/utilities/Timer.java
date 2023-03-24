@@ -18,11 +18,11 @@ public class Timer
 	}
 
 	/**
-	 * Start the time by saving the current time in milliseconds
+	 * Start the time by saving the current time in nanoseconds
 	 */
 	public void start()
 	{
-		_currentStartTime = System.currentTimeMillis();
+		_currentStartTime = System.nanoTime();
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class Timer
 	 */
 	protected long getCurrentInterval()
 	{
-		return System.currentTimeMillis() - _currentStartTime;
+		return System.nanoTime() - _currentStartTime;
 	}
 	
 	/**

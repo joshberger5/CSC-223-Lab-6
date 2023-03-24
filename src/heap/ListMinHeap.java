@@ -45,6 +45,9 @@ public class ListMinHeap<T> implements MinHeap<T>
 	@Override
 	public int size() { return _size; }
 
+	/**
+	 * adds each element from the passed-in lists at the end of the array
+	 */
 	@Override
 	public void build(List<Double> keys, List<T> values) {
 		for (int i = 0; i < keys.size(); i++) {
@@ -52,12 +55,19 @@ public class ListMinHeap<T> implements MinHeap<T>
 		}
 	}
 
+	/**
+	 * adds every new element at the end of the array
+	 */
 	@Override
 	public void insert(double key, T value) {
 		HeapNode<T> node = new HeapNode<T>(key, value);
 		_heap[_size++] = node;
 	}
 
+	/**
+	 * returns and removes the minimum that was found in getMinIndex()
+	 * then moves every subsequent element down one index
+	 */
 	@Override
 	public HeapNode<T> extractMin() {
 		int minIndex = getMinIndex();
