@@ -16,12 +16,20 @@ public class ListMinHeap<T> implements MinHeap<T>
 	protected HeapNode<T>[] _heap;
 	protected int           _size;
 	
-	public ListMinHeap(int sz)
-	{
+	/**
+	 * Construct an empty heap of a given size 
+	 * @param size
+	 */
+	public ListMinHeap(int sz) {
 		init(sz);
 	}
 	
-	public ListMinHeap() { this(DEFAULT_SIZE); }
+	/**
+	 * Construct an empty heap of size 101
+	 */
+	public ListMinHeap() {
+		this(DEFAULT_SIZE);
+	}
 
 	@SuppressWarnings("unchecked")
 	protected void init(int sz)
@@ -30,8 +38,11 @@ public class ListMinHeap<T> implements MinHeap<T>
 		_size = 0;
 	}
 
-	public void clear() { init(_heap.length); }
+	@Override
+	public void clear() {init(_heap.length); }
+	@Override
 	public boolean isEmpty() { return _size == 0; }
+	@Override
 	public int size() { return _size; }
 
 	@Override
@@ -65,6 +76,10 @@ public class ListMinHeap<T> implements MinHeap<T>
 		return _heap[getMinIndex()];
 	}
 	
+	/**
+	 * gets the index of the minimum element in the heap
+	 * @return the minimum index
+	 */
 	private int getMinIndex() {
 		HeapNode<T> min = _heap[0];
 		int minIndex = 0;

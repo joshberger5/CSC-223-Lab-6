@@ -14,10 +14,17 @@ import java.util.List;
  */
 public class SortedListMinHeap<T> extends ListMinHeap<T> {
 	
+	/**
+	 * Construct an empty heap of size 101
+	 */
 	public SortedListMinHeap() {
 		super();
 	}
 	
+	/**
+	 * Construct an empty heap of a given size 
+	 * @param size
+	 */
 	public SortedListMinHeap(int sz) {
 		super(sz);
 	}
@@ -47,6 +54,7 @@ public class SortedListMinHeap<T> extends ListMinHeap<T> {
 	 * @param index
 	 */
 	private void shiftBack(int index) {
+		// starting from the end moves each node back one space
 		for(int i=_size-1; i>=index; i--) {
 			_heap[i+1] = _heap[i];
 		}
@@ -78,27 +86,19 @@ public class SortedListMinHeap<T> extends ListMinHeap<T> {
 	 */
 	private void shiftForward(int index) {
 		if(index > _size) return;
+		// starting from the index moves each node forward one space 
 		for(int i=index; i<=_size; i++) {
 			_heap[i-1] = _heap[i];
 		}
 		_heap[_size-1] = null;
 		_size--;
 	}
-
-	/**
-	 * removes and returns the value at the given index
-	 * @param index
-	 * @return the node that was at the index
-	 */
-	private HeapNode<T> remove(int index) {
-		HeapNode<T> hold = _heap[index];
-		shiftForward(index+1);
-		return hold;
-	}
 	
 	@Override
 	public HeapNode<T> extractMin() {
-		return remove(0);
+		HeapNode<T> hold = peekMin();
+		shiftForward(1);
+		return hold;
 	}
 
 	@Override
