@@ -22,6 +22,7 @@ import java.util.List;
  *       1280000        1104057800              8896300
  *       2560000        2806971300             17526300
  *       5120000        6515562200             33751600
+ *                        O(nlogn)                 O(n)
  * 
  */
 public class SortedListMinHeap<T> extends ListMinHeap<T> {

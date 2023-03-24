@@ -23,6 +23,7 @@ import java.util.List;
  *       1280000      45314900             2700
  *       2560000      95171700             3500
  *       5120000     281618700             3300
+ *                        O(n)          O(logn)
  * 
  */
 public class ClassicMinHeap<T> implements MinHeap<T>

@@ -22,6 +22,7 @@ import java.util.List;
  *       1280000		 44050200             11659500
  *       2560000		110796600             11122600
  *       5120000		138865300             26432600
+ *                           O(n)                 O(n)
  * 
  */
 public class ListMinHeap<T> implements MinHeap<T>
